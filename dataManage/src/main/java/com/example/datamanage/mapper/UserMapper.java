@@ -1,30 +1,16 @@
 package com.example.datamanage.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.datamanage.entity.User;
-import org.apache.ibatis.annotations.*;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-import java.util.List;
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author akashi
+ * @since 2022-06-26
+ */
+public interface UserMapper extends BaseMapper<User> {
 
-//@Mapper
-public interface UserMapper  extends BaseMapper<User> {
-
-//    @Select("select * from sys_user")
-//    List<User> findAll();
-//
-//    @Insert("insert into sys_user(username,password,nickname,email,phone,address) "+
-//            "values(#{username},#{password},#{nickname},#{email},#{phone},#{address})")
-//    int insert(User user);
-//
-//
-//    int update(User user);
-//
-//    @Delete("delete from sys_user where id=#{id}")
-//    Integer deleteById(@Param("id") Integer id);
-//
-//    @Select("select * from sys_user where username like #{username}  limit #{pageNum} , #{pageSize}")
-//    List<User> selectPage(Integer pageNum, Integer pageSize,String username);
-//
-//    @Select("select count(*) from sys_user where username like concat('%',#{username},'%')")
-//    Integer selectTotal(String username);
 }

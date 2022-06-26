@@ -23,8 +23,17 @@
     >
       <el-button type="danger" slot="reference">批量删除 <i class="el-icon-circle-remove-outline"></i> </el-button>
     </el-popconfirm>
-    <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i> </el-button>
-    <el-button type="primary">导出 <i class="el-icon-top"></i> </el-button>
+
+    <el-upload
+        action="http://localhost:8088/user/import"
+        style="display: inline-block"
+        :show-file-list="false"
+        accept="xlsx"
+        :on-success="handleExcelImportSuccess"
+        >
+      <el-button type="primary" class="ml-5">导入 <i class="el-icon-bottom"></i> </el-button>
+    </el-upload>
+    <el-button type="primary" @click="exp" class="ml-5">导出 <i class="el-icon-top"></i> </el-button>
   </div>
   <el-table :data="tableData" border stripe @selection-change="handleSelectionChange" >
     <el-table-column type="selection" width="55"></el-table-column>
@@ -112,6 +121,7 @@ export default {
       username:"",
       email:"",
       address:"",
+      nickname: "",
       form:{},
       dialogFormVisible:false,
 
@@ -141,6 +151,7 @@ export default {
           username:this.username,
           email:this.email,
           address:this.address,
+          nickname:this.nickname,
         }
       }).then(res=>{
         console.log(res)
@@ -200,6 +211,15 @@ export default {
           this.$message.error("批量删除失败")
         }
       })
+    },
+
+    exp(){
+      window.open("http://localhost:8088/user/export")
+    },
+
+    handleExcelImportSuccess(){
+      this.$message.success("文件导入成功")
+      this.load()
     }
   }
 }

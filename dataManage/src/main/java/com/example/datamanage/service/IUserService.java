@@ -1,5 +1,6 @@
 package com.example.datamanage.service;
 
+import com.example.datamanage.controller.dto.UserDTO;
 import com.example.datamanage.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
+    Boolean login(UserDTO userDTO);
 }

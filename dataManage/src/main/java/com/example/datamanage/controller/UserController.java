@@ -1,10 +1,12 @@
 package com.example.datamanage.controller;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.datamanage.controller.dto.UserDTO;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
@@ -35,6 +37,15 @@ public class UserController {
     @Resource
     private IUserService userService;
 
+    @PostMapping("/login")
+    public Boolean login(@RequestBody UserDTO userDTO) {
+        String username = userDTO.getUsername();
+        String password = userDTO.getPassword();
+        if (StrUtil.isBlank(username) || StrUtil.isBlank(password)){
+            return false;
+        }
+        return userService.login(userDTO);
+    }
     @PostMapping
     public Boolean save(@RequestBody User user) {
         return userService.saveOrUpdate(user);
